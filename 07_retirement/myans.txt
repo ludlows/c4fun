@@ -1,3 +1,5 @@
+working rate is 0.04
+retired rate is 0.01
 Age  27 month  3 you have $21345.00
 contribution is 1000.00
 rates is 0.04
