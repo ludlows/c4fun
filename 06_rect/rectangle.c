@@ -28,6 +28,8 @@ typedef struct rect_ rectangle;
 
 rectangle canonicalize(rectangle r) {
   //WRITE THIS FUNCTION
+  if(r.width<0) r.x += r.width;
+  if(r.height<0) r.y += r.height;
   r.width = max(r.width, -r.width);
   r.height = max(r.height, -r.height);  
   return r;
@@ -40,12 +42,16 @@ rectangle intersection(rectangle r1, rectangle r2) {
   int y = max(r1.y, r2.y);
   int x2 = min(r1.x+r1.width, r2.x+r2.width);
   int y2 = min(r1.y+r1.height, r2.y+r2.height);
-  rectangle r;
-  r.x = x;
-  r.y = y;
-  r.width = x2-x;
-  r.height = y2-y;
-  return r;
+  
+  r1.x = x;
+  r1.y = y;
+  r1.width = x2-x;//if negative empty
+  r1.height = y2-y; // if negative empty
+  if(r1.width<0||r1.height<0){
+    r1.width = 0;
+    r1.height = 0;
+  }
+  return r1;
 }
 
 //You should not need to modify any code below this line
